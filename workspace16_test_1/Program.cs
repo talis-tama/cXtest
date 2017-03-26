@@ -14,7 +14,7 @@ namespace workspace16_test_1
             string dat;
             var vb = new XLWorkbook(@"C:\test.xlsx");
             var cell = vb.Cell("A1");//A1を読み込み
-            dat = cell.Value.ToString();
+            dat = cell.Value.ToString();//NullReferenceException
             vb.Cell("B2").Value = dat;//B2へ書き込み
             vb.SaveAs(@"C:\testafter.xlsx");
         }
