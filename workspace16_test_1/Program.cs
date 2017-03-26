@@ -11,12 +11,17 @@ namespace workspace16_test_1
     {
         static void Main(string[] args)
         {
-            string dat;
-            var vb = new XLWorkbook(@"C:\test.xlsx");
-            var cell = vb.Cell("A1");//A1を読み込み
-            dat = cell.Value.ToString();//NullReferenceException
-            vb.Cell("B2").Value = dat;//B2へ書き込み
-            vb.SaveAs(@"C:\testafter.xlsx");
+            using(var book=new XLWorkbook(@"C:\Users\"+Environment.UserName+"\\Desktop\\test.xlsx",XLEventTracking.Disabled))
+            {
+                var sheet1 = book.Worksheet(1);
+                Console.WriteLine(sheet1.Name);//debug
+                var cell = sheet1.Cell("A1");
+                var cell1 = sheet1.Cell("B2");
+                string dat;
+                dat = cell.GetString();
+                cell1.Value = dat;
+                book.SaveAs(@"C:\Users\" + Environment.UserName + "\\Desktop\\testafter.xlsx");
+            }
         }
     }
 }
