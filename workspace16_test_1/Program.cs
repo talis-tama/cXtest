@@ -30,20 +30,20 @@ namespace workspace16_test_1
                 int a, b, d, e;
                 int c = 0;
                 int f = 0;
-                for(a = 1; a <= 4; a++)//1→4
+                for(a = 1; a <= 3; a++)//A→C
                 {
-                    for(b = 1; b <= 3; b++)//A→C
+                    for(b = 1; b <= 4; b++)//1→4
                     {
                         Array.Resize(ref dat, c + 1);//この書き方はまずい気がする
-                        var cell = sheet1.Cell(b, a);//数字にて対象セル指定。座標平面的に言うと(x,y)ではなく(y,x)なので注意
-                        dat[c] = cell.GetString();//書き忘れ
+                        var cell = sheet1.Cell(b, a);//数字にて対象セル指定
+                        dat[c] = cell.GetString();
                         Console.WriteLine(dat[c]);//debug
                         c++;
                     }
                 }
-                for (d = 6; d <= 9; d++)//6→9
+                for (d = 6; d <= 8; d++)//F→H
                 {
-                    for (e = 6; e <= 8; e++)//F→H
+                    for (e = 6; e <= 9; e++)//6→9
                     {
                         var cell1 = sheet1.Cell(e, d);
                         cell1.Value = dat[f];
