@@ -34,8 +34,8 @@ namespace workspace16_test_1
                 {
                     for(b = 1; b <= 3; b++)//A→C
                     {
-                        Array.Resize(ref dat, c + 1);//この書き方はまずい気がする(失敗)
-                        var cell = sheet1.Cell(a, b);//数字にて対象セル指定。座標平面的に言うと(x,y)ではなく(y,x)なので注意
+                        Array.Resize(ref dat, c + 1);//この書き方はまずい気がする(どこかが失敗)
+                        var cell = sheet1.Cell(b, a);//数字にて対象セル指定。座標平面的に言うと(x,y)ではなく(y,x)なので注意
                         Console.WriteLine(dat[c]);//debug
                         c++;
                     }
@@ -44,7 +44,7 @@ namespace workspace16_test_1
                 {
                     for (e = 6; e <= 8; e++)//F→H
                     {
-                        var cell1 = sheet1.Cell(d, e);
+                        var cell1 = sheet1.Cell(e, d);
                         cell1.Value = dat[f];
                         f++;
                     }
