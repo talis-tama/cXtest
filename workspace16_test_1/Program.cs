@@ -11,7 +11,7 @@ namespace workspace16_test_1
     {
         static void Main(string[] args)
         {
-            using(var book=new XLWorkbook(@"C:\Users\"+Environment.UserName+"\\Desktop\\test.xlsx",XLEventTracking.Disabled))
+            /*using(var book=new XLWorkbook(@"C:\Users\"+Environment.UserName+"\\Desktop\\test.xlsx",XLEventTracking.Disabled))
             {
                 var sheet1 = book.Worksheet(1);
                 Console.WriteLine(sheet1.Name);//debug
@@ -21,7 +21,42 @@ namespace workspace16_test_1
                 dat = cell.GetString();
                 cell1.Value = dat;
                 book.SaveAs(@"C:\Users\" + Environment.UserName + "\\Desktop\\testafter.xlsx");
-            }
+            }//A1からB2へコピー*/
+            using(var book=new XLWorkbook(@"C:\Users\" + Environment.UserName + "\\Desktop\\test.xlsx", XLEventTracking.Disabled))
+            {
+                var sheet1 = book.Worksheet(1);
+                Console.WriteLine(sheet1.Name);//debug
+                string[] dat = null;
+                int a, b, d, e;
+                int c = 0;
+                int f = 0;
+                for(a = 1; a <= 4; a++)//1→4
+                {
+                    for(b = 1; b <= 3; b++)//A→C
+                    {
+                        var cell = sheet1.Cell(a, b);//数字にて対象セル指定。座標平面的に言うと(x,y)ではなく(y,x)なので注意
+                        dat[c] = cell.GetString();//NullReferenceException(A1にて停止)
+                        c++;
+                    }
+                }
+                for (d = 6; d <= 9; d++)//6→9
+                {
+                    for (e = 6; e <= 8; e++)//F→H
+                    {
+                        var cell1 = sheet1.Cell(d, e);
+                        cell1.Value = dat[f];
+                        f++;
+                    }
+                }
+                book.SaveAs(@"C:\Users\" + Environment.UserName + "\\Desktop\\testafter.xlsx");
+            }//A1→C4からF6→H9へコピー(範囲指定読み出し、書き込みテスト)
+            /*for(int a = 1; a <= 5; a++)
+            {
+                for(int b = 1; b <= 7; b++)
+                {
+                    Console.WriteLine(a.ToString() + b.ToString());
+                }
+            }//仕様忘れ確認*/
         }
     }
 }
