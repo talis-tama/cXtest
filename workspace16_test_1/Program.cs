@@ -34,8 +34,9 @@ namespace workspace16_test_1
                 {
                     for(b = 1; b <= 3; b++)//A→C
                     {
-                        Array.Resize(ref dat, c + 1);//この書き方はまずい気がする(どこかが失敗)
+                        Array.Resize(ref dat, c + 1);//この書き方はまずい気がする
                         var cell = sheet1.Cell(b, a);//数字にて対象セル指定。座標平面的に言うと(x,y)ではなく(y,x)なので注意
+                        dat[c] = cell.GetString();//書き忘れ
                         Console.WriteLine(dat[c]);//debug
                         c++;
                     }
